@@ -36,22 +36,11 @@ make install DESTDIR=%{buildroot} LIBDIR=%{_libdir} BINDIR=%{_bindir} SBINDIR=%{
 # - Add formula path to file_roots
 # - Add formula to salt top.sls
 # - Add formula to pillar top.sls if contains pillar data
-qubesctl saltutil.sync_all -l quiet --out quiet
-
-%preun
-# TODO:
-# - Remove formula path to file_roots
-# - Remove formula to salt top.sls
-# - Remove formula to pillar top.sls if contains pillar data
-qubesctl saltutil.sync_all -l quiet --out quiet
+salt-call --local saltutil.sync_all -l quiet --out quiet > /dev/null || true
 
 %files
 %defattr(-,root,root)
-#
-# XXX: See if we can use var set in Makefile
-#
-
-%attr(750, root, root) %dir /srv/formulas/%{formula_name}
-/srv/formulas/%{formula_name}/*
+%attr(750, root, root) %dir /srv/formulas/all/%{formula_name}
+/srv/formulas/all/%{formula_name}/*
 
 %changelog

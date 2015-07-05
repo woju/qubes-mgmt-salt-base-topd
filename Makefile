@@ -18,7 +18,7 @@
 
 PACKAGE_NAME := qubes-mgmt-salt-template
 PACKAGE_CONTENTS := README.rst LICENSE 
-FORMULA_DIR ?= /srv/formulas
+FORMULA_DIR ?= /srv/formulas/all
 FORMULA_NAME := $(shell cat formula_name)
 
 RPMS_DIR := rpm/
